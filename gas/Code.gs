@@ -1,0 +1,254 @@
+// ============================================================
+// リューグーレザーズ 革ジャン査定システム - Google Apps Script
+// スプレッドシートID: 1NbI-J49c0Ulqds62ZlxeKNLH9c04T26x79hZCYyODto
+//
+// 【デプロイ手順】
+// 1. スプレッドシートを開く → 拡張機能 → Apps Script
+// 2. このコードを貼り付けて保存
+// 3. デプロイ → 新しいデプロイ → 種類「ウェブアプリ」
+// 4. 次のユーザーとして実行: 「自分」
+// 5. アクセスできるユーザー: 「全員」
+// 6. デプロイ → 生成されたURLをLPの GAS_ENDPOINT に貼り付ける
+// ============================================================
+
+const SPREADSHEET_ID = '1NbI-J49c0Ulqds62ZlxeKNLH9c04T26x79hZCYyODto';
+const ADMIN_EMAIL = 'lf.hiro422@gmail.com';
+const RESULT_SHEET_NAME = '申込データ';
+
+// ============================================================
+// GET: 相場マスター・掛け率データを返す
+// ============================================================
+function doGet(e) {
+  const output = ContentService.createTextOutput();
+  output.setMimeType(ContentService.MimeType.JSON);
+
+  try {
+    const data = getPriceData();
+    output.setContent(JSON.stringify({ success: true, data: data }));
+  } catch (err) {
+    output.setContent(JSON.stringify({ success: false, error: err.message }));
+  }
+
+  return output;
+}
+
+// ============================================================
+// POST: 申込データ受信 → スプレッドシート記録 → メール送信
+// ============================================================
+function doPost(e) {
+  const output = ContentService.createTextOutput();
+  output.setMimeType(ContentService.MimeType.JSON);
+
+  try {
+    const payload = JSON.parse(e.postData.contents);
+
+    // バリデーション
+    if (!payload.customerName || !payload.phone || !payload.email) {
+      throw new Error('必須項目（名前・電話番号・メール）が不足しています');
+    }
+
+    recordApplication(payload);
+    sendAdminEmail(payload);
+    sendCustomerEmail(payload);
+
+    output.setContent(JSON.stringify({ success: true, message: '申込を受け付けました' }));
+  } catch (err) {
+    output.setContent(JSON.stringify({ success: false, error: err.message }));
+  }
+
+  return output;
+}
+
+// ============================================================
+// 相場マスター・掛け率シートを読み込んでJSONで返す
+// ============================================================
+function getPriceData() {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+
+  // ---------- 相場マスター ----------
+  const masterSheet = ss.getSheetByName('相場マスター');
+  if (!masterSheet) throw new Error('「相場マスター」シートが見つかりません');
+
+  const masterValues = masterSheet.getDataRange().getValues();
+  const prices = [];
+
+  // 1行目はヘッダーなのでi=1からスタート
+  for (let i = 1; i < masterValues.length; i++) {
+    const row = masterValues[i];
+    // A列: ブランド, B列: モデル, C列: 相場価格
+    if (row[0] && row[1] && row[2] !== '') {
+      prices.push({
+        brand: String(row[0]).trim(),
+        model: String(row[1]).trim(),
+        price: Number(row[2])
+      });
+    }
+  }
+
+  // ---------- 掛け率 ----------
+  const rateSheet = ss.getSheetByName('掛け率');
+  if (!rateSheet) throw new Error('「掛け率」シートが見つかりません');
+
+  const rateValues = rateSheet.getDataRange().getValues();
+  const conditions = {};   // 状態倍率  例: { "S（新品同様）": 1.0, "A（傷・汚れなし）": 0.8, ... }
+  const adjustments = {};  // 調整金額  例: { "サイズ": { "S": -10000, "M": -5000, ... }, ... }
+
+  for (let i = 1; i < rateValues.length; i++) {
+    const row = rateValues[i];
+    if (!row[0]) continue;
+
+    const category = String(row[0]).trim(); // A列: カテゴリ（状態 / サイズ / 素材 / カラー / カビ / 臭い）
+    const option   = String(row[1]).trim(); // B列: オプション名
+    const value    = Number(row[2]);        // C列: 倍率または金額
+
+    if (category === '状態') {
+      conditions[option] = value;
+    } else {
+      if (!adjustments[category]) adjustments[category] = {};
+      adjustments[category][option] = value;
+    }
+  }
+
+  return { prices: prices, conditions: conditions, adjustments: adjustments };
+}
+
+// ============================================================
+// 申込データをスプレッドシートに記録
+// ============================================================
+function recordApplication(payload) {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  let sheet = ss.getSheetByName(RESULT_SHEET_NAME);
+
+  // シートがなければ新規作成してヘッダーを設定
+  if (!sheet) {
+    sheet = ss.insertSheet(RESULT_SHEET_NAME);
+
+    const headers = [
+      '申込日時', '名前', '郵便番号', '住所', '電話番号', 'メールアドレス',
+      'ブランド', 'モデル', '状態', 'サイズ', '素材', 'カラー',
+      'カビあり', '臭いあり', '査定金額（円）'
+    ];
+    sheet.appendRow(headers);
+    sheet.setFrozenRows(1);
+
+    // ヘッダー装飾（黒背景・金色フォント）
+    const headerRange = sheet.getRange(1, 1, 1, headers.length);
+    headerRange.setBackground('#1a1a2e');
+    headerRange.setFontColor('#f59e0b');
+    headerRange.setFontWeight('bold');
+    headerRange.setHorizontalAlignment('center');
+
+    // 列幅調整
+    sheet.setColumnWidth(1, 160);  // 申込日時
+    sheet.setColumnWidth(4, 220);  // 住所
+    sheet.setColumnWidth(6, 200);  // メール
+  }
+
+  // データ行を追加
+  sheet.appendRow([
+    new Date(),
+    payload.customerName || '',
+    payload.postalCode   || '',
+    payload.address      || '',
+    payload.phone        || '',
+    payload.email        || '',
+    payload.brand        || '',
+    payload.model        || '',
+    payload.condition    || '',
+    payload.size         || '',
+    payload.material     || '',
+    payload.color        || '',
+    payload.hasMold  ? 'あり' : 'なし',
+    payload.hasSmell ? 'あり' : 'なし',
+    Number(payload.assessmentAmount) || 0
+  ]);
+}
+
+// ============================================================
+// 管理者へメール通知
+// ============================================================
+function sendAdminEmail(payload) {
+  const amount = Number(payload.assessmentAmount).toLocaleString('ja-JP');
+  const subject = '【新規本査定申込】' + payload.customerName + ' 様 / ¥' + amount;
+
+  const body = [
+    'リューグーレザーズ 本査定申込 通知',
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+    '申込日時: ' + new Date().toLocaleString('ja-JP'),
+    '',
+    '【お客様情報】',
+    '名前　　　: ' + payload.customerName,
+    '郵便番号　: ' + payload.postalCode,
+    '住所　　　: ' + payload.address,
+    '電話番号　: ' + payload.phone,
+    'メール　　: ' + payload.email,
+    '',
+    '【査定内容】',
+    'ブランド　: ' + payload.brand,
+    'モデル　　: ' + payload.model,
+    '状態　　　: ' + payload.condition,
+    'サイズ　　: ' + payload.size,
+    '素材　　　: ' + payload.material,
+    'カラー　　: ' + payload.color,
+    'カビ　　　: ' + (payload.hasMold  ? 'あり' : 'なし'),
+    '臭い　　　: ' + (payload.hasSmell ? 'あり' : 'なし'),
+    '',
+    '【簡易査定金額】',
+    '¥' + amount,
+    '',
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+    'スプレッドシートで確認:',
+    'https://docs.google.com/spreadsheets/d/' + SPREADSHEET_ID
+  ].join('\n');
+
+  GmailApp.sendEmail(ADMIN_EMAIL, subject, body);
+}
+
+// ============================================================
+// お客様へ申込完了メール
+// ============================================================
+function sendCustomerEmail(payload) {
+  if (!payload.email) return;
+
+  const amount = Number(payload.assessmentAmount).toLocaleString('ja-JP');
+  const subject = '【リューグーレザーズ】本査定お申し込みを受け付けました';
+
+  const body = [
+    payload.customerName + ' 様',
+    '',
+    'この度はリューグーレザーズリユースへの',
+    '本査定お申し込みをいただきありがとうございます。',
+    '',
+    '以下の内容でお申し込みを受け付けました。',
+    '',
+    '━━━ 査定内容 ━━━━━━━━━━━━━━━━━━━',
+    'ブランド　　: ' + payload.brand,
+    'モデル　　　: ' + payload.model,
+    '状態　　　　: ' + payload.condition,
+    'サイズ　　　: ' + payload.size,
+    '素材　　　　: ' + payload.material,
+    'カラー　　　: ' + payload.color,
+    '簡易査定金額: ¥' + amount,
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+    '',
+    '担当のレザーソムリエより、',
+    '2営業日以内にご連絡いたします。',
+    '今しばらくお待ちくださいませ。',
+    '',
+    '◆ 梱包キット（段ボール・着払い伝票）は',
+    '  無料でご自宅までお届けします。',
+    '',
+    '◆ 査定金額にご満足いただけない場合は、',
+    '  キャンセル料・返送料ともに0円です。',
+    '  安心してお待ちください。',
+    '',
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+    'リューグーレザーズ リユース事業部',
+    '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
+    '※このメールは自動送信されています。',
+    '  返信はお受けできません。',
+    '  お問い合わせはLINEまたはお電話にてご連絡ください。'
+  ].join('\n');
+
+  GmailApp.sendEmail(payload.email, subject, body);
+}

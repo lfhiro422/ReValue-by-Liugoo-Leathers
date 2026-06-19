@@ -1,0 +1,6 @@
+{
+  "name": "Leather Jacket Appraisal",
+  "description": "A premium, responsive landing page for Liugoo Leathers Reuse—an professional appraisal and trade-in service for cherished leather jackets.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
