@@ -17,7 +17,10 @@ export function usePriceData(): UsePriceDataResult {
     setIsLoading(true);
     setError(null);
     try {
-      const endpoint = import.meta.env.VITE_GAS_ENDPOINT as string | undefined;
+      // 開発環境では Vite プロキシ経由で CORS を回避、本番は直接 GAS URL
+      const endpoint = import.meta.env.DEV
+        ? "/gas-proxy"
+        : (import.meta.env.VITE_GAS_ENDPOINT as string | undefined);
       if (!endpoint) throw new Error("GASエンドポイントが設定されていません（VITE_GAS_ENDPOINT）");
 
       const res = await fetch(endpoint);

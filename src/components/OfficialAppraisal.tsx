@@ -5,7 +5,9 @@ import {
   User, MapPin, Phone, Mail, CheckCircle2, Award, Sparkles,
 } from "lucide-react";
 
-const GAS_ENDPOINT = import.meta.env.VITE_GAS_ENDPOINT as string;
+const GAS_ENDPOINT = import.meta.env.DEV
+  ? "/gas-proxy"
+  : (import.meta.env.VITE_GAS_ENDPOINT as string);
 
 interface PriceItem {
   brand: string;
