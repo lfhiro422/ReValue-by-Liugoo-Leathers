@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react";
-import { 
+import {
   Sparkles, Flame, Shield, Award, ChevronDown, Check, Bike, HelpCircle, 
   ArrowUpRight, Camera, Key, Lock, Heart, CheckSquare, Square, ThumbsUp, 
   MessageCircle, Star, ShoppingBag, Coins, Navigation, ArrowRight, CornerDownRight
@@ -522,10 +521,7 @@ export default function App() {
 
           <OfficialAppraisal />
 
-          {/* Legacy quick estimator — hidden but keeps the LINE CTA intact */}
-          <div className="hidden">
-            <AssessmentCalculator onOpenLine={() => scrollToSection("line-anchor")} />
-          </div>
+          <AssessmentCalculator onOpenLine={() => scrollToSection("line-anchor")} />
 
         </div>
       </section>
