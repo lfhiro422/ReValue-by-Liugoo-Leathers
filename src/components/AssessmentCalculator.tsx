@@ -451,7 +451,7 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                             {opt}
                             {amt !== 0 && (
                               <span className={`ml-1.5 font-mono ${amt > 0 ? "text-emerald-400" : "text-red-400"}`}>
-                                {amt > 0 ? "+" : ""}¥{Math.abs(amt).toLocaleString()}
+                                {amt > 0 ? "+" : "-"}¥{Math.abs(amt).toLocaleString()}
                               </span>
                             )}
                           </button>
@@ -679,7 +679,7 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                         <div className={`flex justify-between ${currentResult.gasAdjTotal < 0 ? "text-red-400" : "text-emerald-400"}`}>
                           <span>サイズ・素材・カラー等調整:</span>
                           <span className="font-mono font-bold">
-                            {currentResult.gasAdjTotal > 0 ? "+" : ""}¥{currentResult.gasAdjTotal.toLocaleString()}
+                            {currentResult.gasAdjTotal > 0 ? "+" : "-"}¥{Math.abs(currentResult.gasAdjTotal).toLocaleString()}
                           </span>
                         </div>
                       )}
