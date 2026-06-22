@@ -24,6 +24,18 @@ export interface FAQItem {
   answer: string;
 }
 
+export interface GasPriceItem {
+  brand: string;
+  model: string;
+  price: number;
+}
+
+export interface GasPriceData {
+  prices: GasPriceItem[];
+  conditions: Record<string, number>;
+  adjustments: Record<string, Record<string, number>>;
+}
+
 export interface Testimonial {
   id: string;
   name: string;

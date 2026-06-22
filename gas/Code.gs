@@ -95,17 +95,25 @@ function getPriceData() {
 
   for (let i = 1; i < rateValues.length; i++) {
     const row = rateValues[i];
-    if (!row[0]) continue;
 
-    const category = String(row[0]).trim(); // A列: カテゴリ（状態 / サイズ / 素材 / カラー / カビ / 臭い）
-    const option   = String(row[1]).trim(); // B列: オプション名
-    const value    = Number(row[2]);        // C列: 倍率または金額
+    // A列: 状態ラベル, B列: 倍率（5列構成の左2列）
+    if (row[0] != null && row[0] !== '' && row[1] != null && row[1] !== '') {
+      const label = String(row[0]).trim();
+      const mult  = Number(row[1]);
+      if (label && !isNaN(mult)) {
+        conditions[label] = mult;
+      }
+    }
 
-    if (category === '状態') {
-      conditions[option] = value;
-    } else {
-      if (!adjustments[category]) adjustments[category] = {};
-      adjustments[category][option] = value;
+    // C列: カテゴリ, D列: オプション名, E列: 加減額（5列構成の右3列）
+    if (row[2] != null && row[2] !== '' && row[3] != null && row[3] !== '') {
+      const cat = String(row[2]).trim();
+      const opt = String(row[3]).trim();
+      const amt = Number(row[4]);
+      if (cat && opt) {
+        if (!adjustments[cat]) adjustments[cat] = {};
+        adjustments[cat][opt] = isNaN(amt) ? 0 : amt;
+      }
     }
   }
 
