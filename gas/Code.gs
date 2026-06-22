@@ -73,14 +73,14 @@ function getPriceData() {
   const prices = [];
 
   // 1行目はヘッダーなのでi=1からスタート
+  // A列: ID, B列: ブランド, C列: モデル, D列: 相場価格
   for (let i = 1; i < masterValues.length; i++) {
     const row = masterValues[i];
-    // A列: ブランド, B列: モデル, C列: 相場価格
-    if (row[0] && row[1] && row[2] !== '') {
+    if (row[1] && row[2] && row[3] !== '') {
       prices.push({
-        brand: String(row[0]).trim(),
-        model: String(row[1]).trim(),
-        price: Number(row[2])
+        brand: String(row[1]).trim(),
+        model: String(row[2]).trim(),
+        price: Number(row[3])
       });
     }
   }
@@ -93,11 +93,14 @@ function getPriceData() {
   const conditions = {};   // 状態倍率  例: { "S（新品同様）": 1.0, "A（傷・汚れなし）": 0.8, ... }
   const adjustments = {};  // 調整金額  例: { "サイズ": { "S": -10000, "M": -5000, ... }, ... }
 
+  // C列のカテゴリ名は先頭行にしか入力されていないためキャリーフォワードする
+  let currentAdjCat = '';
+
   for (let i = 1; i < rateValues.length; i++) {
     const row = rateValues[i];
 
-    // A列: 状態ラベル, B列: 倍率（5列構成の左2列）
-    if (row[0] != null && row[0] !== '' && row[1] != null && row[1] !== '') {
+    // A列: 状態ラベル, B列: 倍率
+    if (row[0] != null && row[0] !== '') {
       const label = String(row[0]).trim();
       const mult  = Number(row[1]);
       if (label && !isNaN(mult)) {
@@ -105,14 +108,16 @@ function getPriceData() {
       }
     }
 
-    // C列: カテゴリ, D列: オプション名, E列: 加減額（5列構成の右3列）
-    if (row[2] != null && row[2] !== '' && row[3] != null && row[3] !== '') {
-      const cat = String(row[2]).trim();
+    // C列: カテゴリ（空欄の場合は直前の値を引き継ぐ）, D列: オプション名, E列: 加減額
+    if (row[2] != null && row[2] !== '') {
+      currentAdjCat = String(row[2]).trim();
+    }
+    if (currentAdjCat && row[3] != null && row[3] !== '') {
       const opt = String(row[3]).trim();
       const amt = Number(row[4]);
-      if (cat && opt) {
-        if (!adjustments[cat]) adjustments[cat] = {};
-        adjustments[cat][opt] = isNaN(amt) ? 0 : amt;
+      if (opt) {
+        if (!adjustments[currentAdjCat]) adjustments[currentAdjCat] = {};
+        adjustments[currentAdjCat][opt] = isNaN(amt) ? 0 : amt;
       }
     }
   }
