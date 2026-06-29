@@ -149,14 +149,14 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
   // ── Loading ──────────────────────────────────────────────────────────────
   if (priceLoading) {
     return (
-      <div id="quick-calculator" className="w-full bg-[#11131c] border border-amber-500/20 rounded-2xl overflow-hidden shadow-2xl relative">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600" />
+      <div id="quick-calculator" className="w-full bg-[#11131c] border border-camel-500/20 rounded-2xl overflow-hidden shadow-2xl relative">
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-camel-500 via-camel-400 to-camel-600" />
         <div className="p-16 flex flex-col items-center justify-center gap-4">
           <div className="relative w-12 h-12">
-            <div className="absolute inset-0 rounded-full border-4 border-amber-500/10" />
-            <div className="absolute inset-0 rounded-full border-4 border-t-amber-500 animate-spin" />
+            <div className="absolute inset-0 rounded-full border-4 border-camel-500/10" />
+            <div className="absolute inset-0 rounded-full border-4 border-t-camel-500 animate-spin" />
           </div>
-          <p className="text-amber-500 font-mono text-xs tracking-widest animate-pulse">相場データを読み込み中...</p>
+          <p className="text-camel-500 font-mono text-xs tracking-widest animate-pulse">相場データを読み込み中...</p>
         </div>
       </div>
     );
@@ -175,7 +175,7 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
           </div>
           <button
             onClick={refetch}
-            className="flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 font-semibold py-2 px-5 rounded-lg hover:bg-amber-500/20 transition-colors"
+            className="flex items-center gap-2 bg-camel-500/10 border border-camel-500/30 text-camel-400 font-semibold py-2 px-5 rounded-lg hover:bg-camel-500/20 transition-colors"
           >
             <RefreshCw className="w-4 h-4" />
             再読み込み
@@ -187,19 +187,19 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
 
   // ── Main ─────────────────────────────────────────────────────────────────
   return (
-    <div id="quick-calculator" className="w-full bg-[#11131c] border border-amber-500/20 rounded-2xl overflow-hidden shadow-2xl relative">
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600" />
+    <div id="quick-calculator" className="w-full bg-[#11131c] border border-camel-500/20 rounded-2xl overflow-hidden shadow-2xl relative">
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-camel-500 via-camel-400 to-camel-600" />
 
       {/* Header */}
       <div className="px-6 py-4 bg-[#181a26]/90 border-b border-white/5 flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="bg-amber-500/10 p-2 rounded-lg border border-amber-500/30">
-            <Award className="w-5 h-5 text-amber-500" />
+          <div className="bg-camel-500/10 p-2 rounded-lg border border-camel-500/30">
+            <Award className="w-5 h-5 text-camel-500" />
           </div>
           <div>
             <h3 className="font-bold text-gray-100 flex items-center gap-2 text-sm sm:text-base">
               こだわり価値発見！{" "}
-              <span className="text-amber-400 text-xs py-0.5 px-2 bg-amber-500/10 rounded border border-amber-500/20">
+              <span className="text-camel-400 text-xs py-0.5 px-2 bg-camel-500/10 rounded border border-camel-500/20">
                 無料自動簡易査定
               </span>
             </h3>
@@ -216,9 +216,9 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                 key={s}
                 className={`px-2.5 py-1 rounded-md font-mono ${
                   step === s
-                    ? "bg-amber-500 text-black font-bold shadow-md shadow-amber-500/25"
+                    ? "bg-camel-500 text-black font-bold shadow-md shadow-camel-500/25"
                     : step > s
-                    ? "bg-amber-500/20 text-amber-500 border border-amber-500/30"
+                    ? "bg-camel-500/20 text-camel-500 border border-camel-500/30"
                     : "bg-white/5 text-gray-500 border border-white/5"
                 }`}
               >
@@ -237,7 +237,7 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
           {step === 1 && (
             <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-5">
               <div>
-                <label className="text-xs uppercase tracking-wider text-amber-500 font-mono block mb-1">Step 01 / Brand Selection</label>
+                <label className="text-xs uppercase tracking-wider text-camel-500 font-mono block mb-1">Step 01 / Brand Selection</label>
                 <h4 className="text-lg sm:text-xl font-bold text-white">査定する革ジャンの「ブランド」をお選びください</h4>
                 <p className="text-xs text-gray-400 mt-1">※その他アメカジ・ミリタリー・ヴィンテージブランドもすべて歓迎します</p>
               </div>
@@ -251,14 +251,14 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                       onClick={() => setSelectedBrand(brand)}
                       className={`p-4 rounded-xl border text-left flex flex-col justify-between group transition-all relative overflow-hidden ${
                         selectedBrand === brand
-                          ? "bg-amber-500/10 border-amber-500/80 shadow-lg shadow-amber-500/5 text-white"
+                          ? "bg-camel-500/10 border-camel-500/80 shadow-lg shadow-camel-500/5 text-white"
                           : "bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/10 text-gray-400"
                       }`}
                     >
                       <div className="flex items-center justify-between w-full mb-1">
-                        <span className="font-bold text-sm sm:text-base group-hover:text-amber-400 transition-colors">{brand}</span>
+                        <span className="font-bold text-sm sm:text-base group-hover:text-camel-400 transition-colors">{brand}</span>
                         {selectedBrand === brand && (
-                          <div className="bg-amber-500 text-black p-0.5 rounded-full">
+                          <div className="bg-camel-500 text-black p-0.5 rounded-full">
                             <Check className="w-3 h-3 stroke-[3]" />
                           </div>
                         )}
@@ -275,7 +275,7 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                 <button
                   onClick={() => setStep(2)}
                   disabled={!selectedBrand}
-                  className="bg-amber-500 hover:bg-amber-400 active:bg-amber-600 disabled:opacity-40 disabled:cursor-not-allowed text-black font-bold py-3 px-6 rounded-xl flex items-center gap-2 hover:scale-[1.02] active:scale-95 transition-all w-full sm:w-auto justify-center"
+                  className="bg-burgundy-500 hover:bg-burgundy-400 active:bg-burgundy-600 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-xl flex items-center gap-2 hover:scale-[1.02] active:scale-95 transition-all w-full sm:w-auto justify-center"
                 >
                   <span>モデル・状態選択に進む</span>
                   <ChevronRight className="w-4 h-4 stroke-[3]" />
@@ -288,14 +288,14 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
           {step === 2 && (
             <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
               <div>
-                <label className="text-xs uppercase tracking-wider text-amber-500 font-mono block mb-1">Step 02 / Model & Condition</label>
+                <label className="text-xs uppercase tracking-wider text-camel-500 font-mono block mb-1">Step 02 / Model & Condition</label>
                 <h4 className="text-lg sm:text-xl font-bold text-white">モデルとコンディションをお選びください</h4>
               </div>
 
               {/* Model */}
               <div className="space-y-2">
                 <p className="text-xs font-semibold text-gray-400">
-                  モデル <span className="text-amber-400">（{selectedBrand}）</span>
+                  モデル <span className="text-camel-400">（{selectedBrand}）</span>
                 </p>
                 {models.map((model) => {
                   const price = priceData.prices.find((p) => p.brand === selectedBrand && p.model === model)?.price ?? 0;
@@ -305,15 +305,15 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                       onClick={() => setSelectedModel(model)}
                       className={`w-full p-3.5 rounded-xl border text-left flex items-center justify-between group transition-all ${
                         selectedModel === model
-                          ? "bg-amber-500/10 border-amber-500/80 text-white"
+                          ? "bg-camel-500/10 border-camel-500/80 text-white"
                           : "bg-white/[0.02] border-white/5 hover:bg-white/[0.05] text-gray-400"
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${selectedModel === model ? "border-amber-500 bg-amber-500" : "border-gray-600"}`}>
+                        <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${selectedModel === model ? "border-camel-500 bg-camel-500" : "border-gray-600"}`}>
                           {selectedModel === model && <div className="w-1.5 h-1.5 rounded-full bg-black shrink-0" />}
                         </div>
-                        <span className="text-sm font-semibold group-hover:text-amber-400">{model}</span>
+                        <span className="text-sm font-semibold group-hover:text-camel-400">{model}</span>
                       </div>
                       <span className="text-xs font-mono text-gray-500">基準価格 ¥{price.toLocaleString()}</span>
                     </button>
@@ -331,17 +331,17 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                     onClick={() => setSelectedCondition(label)}
                     className={`w-full p-3.5 rounded-xl border text-left flex items-center justify-between group transition-all ${
                       selectedCondition === label
-                        ? "bg-amber-500/10 border-amber-500/80 text-white"
+                        ? "bg-camel-500/10 border-camel-500/80 text-white"
                         : "bg-white/[0.02] border-white/5 hover:bg-white/[0.05] text-gray-400"
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${selectedCondition === label ? "border-amber-500 bg-amber-500" : "border-gray-600"}`}>
+                      <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${selectedCondition === label ? "border-camel-500 bg-camel-500" : "border-gray-600"}`}>
                         {selectedCondition === label && <div className="w-1.5 h-1.5 rounded-full bg-black shrink-0" />}
                       </div>
-                      <span className="text-sm font-semibold group-hover:text-amber-400">{label}</span>
+                      <span className="text-sm font-semibold group-hover:text-camel-400">{label}</span>
                     </div>
-                    <span className="text-xs font-mono bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded border border-amber-500/20">
+                    <span className="text-xs font-mono bg-camel-500/10 text-camel-400 px-2 py-0.5 rounded border border-camel-500/20">
                       ×{multiplier.toFixed(1)}
                     </span>
                   </button>
@@ -355,7 +355,7 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                 <button
                   onClick={() => setStep(3)}
                   disabled={!selectedModel || !selectedCondition}
-                  className="bg-amber-500 hover:bg-amber-400 disabled:opacity-40 disabled:cursor-not-allowed text-black font-bold py-3 px-6 rounded-xl flex items-center gap-2 hover:scale-[1.02] active:scale-95 transition-all justify-center"
+                  className="bg-burgundy-500 hover:bg-burgundy-400 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-xl flex items-center gap-2 hover:scale-[1.02] active:scale-95 transition-all justify-center"
                 >
                   <span>スタイル選択に進む</span>
                   <ChevronRight className="w-4 h-4 stroke-[3]" />
@@ -368,7 +368,7 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
           {step === 3 && (
             <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-5">
               <div>
-                <label className="text-xs uppercase tracking-wider text-amber-500 font-mono block mb-1">Step 03 / Style Design</label>
+                <label className="text-xs uppercase tracking-wider text-camel-500 font-mono block mb-1">Step 03 / Style Design</label>
                 <h4 className="text-lg sm:text-xl font-bold text-white">ライダースの「形状・スタイル」をお選びください</h4>
                 <p className="text-xs text-gray-400 mt-1">選択されたスタイルにより、最新の流通相場掛け率（最高1.15倍）が自動適用されます</p>
               </div>
@@ -380,18 +380,18 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                     onClick={() => setSelectedStyleId(style.id)}
                     className={`w-full p-4 rounded-xl border text-left flex items-center justify-between group transition-all ${
                       selectedStyleId === style.id
-                        ? "bg-amber-500/10 border-amber-500/80 text-white"
+                        ? "bg-camel-500/10 border-camel-500/80 text-white"
                         : "bg-white/[0.02] border-white/5 hover:bg-white/[0.05] hover:border-white/10 text-gray-400"
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${selectedStyleId === style.id ? "border-amber-500 bg-amber-500" : "border-gray-600"}`}>
+                      <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${selectedStyleId === style.id ? "border-camel-500 bg-camel-500" : "border-gray-600"}`}>
                         {selectedStyleId === style.id && <div className="w-1.5 h-1.5 rounded-full bg-black shrink-0" />}
                       </div>
-                      <span className="text-sm sm:text-base font-semibold group-hover:text-amber-400">{style.name}</span>
+                      <span className="text-sm sm:text-base font-semibold group-hover:text-camel-400">{style.name}</span>
                     </div>
                     {style.multiplier > 1.0 && (
-                      <span className="text-[10px] sm:text-xs font-mono bg-amber-500/10 text-amber-400 font-bold py-0.5 px-2 rounded border border-amber-500/20">
+                      <span className="text-[10px] sm:text-xs font-mono bg-camel-500/10 text-camel-400 font-bold py-0.5 px-2 rounded border border-camel-500/20">
                         相場価値 +{Math.round((style.multiplier - 1) * 100)}%
                       </span>
                     )}
@@ -405,7 +405,7 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                 </button>
                 <button
                   onClick={() => setStep(4)}
-                  className="bg-amber-500 hover:bg-amber-400 active:bg-amber-600 text-black font-bold py-3 px-6 rounded-xl flex items-center gap-2 hover:scale-[1.02] active:scale-95 transition-all justify-center"
+                  className="bg-burgundy-500 hover:bg-burgundy-400 active:bg-burgundy-600 text-white font-bold py-3 px-6 rounded-xl flex items-center gap-2 hover:scale-[1.02] active:scale-95 transition-all justify-center"
                 >
                   <span>調整・加点項目へ</span>
                   <ChevronRight className="w-4 h-4 stroke-[3]" />
@@ -418,16 +418,16 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
           {step === 4 && (
             <motion.div key="step4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-5">
               <div>
-                <label className="text-xs uppercase tracking-wider text-amber-500 font-mono block mb-1">Step 04 / Adjustments & Aging</label>
+                <label className="text-xs uppercase tracking-wider text-camel-500 font-mono block mb-1">Step 04 / Adjustments & Aging</label>
                 <h4 className="text-lg sm:text-xl font-bold text-white">サイズ・素材・カラーと「こだわりエイジング」を選択</h4>
-                <p className="text-xs text-amber-400 font-medium mt-1">
+                <p className="text-xs text-camel-400 font-medium mt-1">
                   ★リューグーの独自指標！ 他店では減点される項目も、当店なら【ヴィンテージ成熟度】として現金加点評価します。
                 </p>
               </div>
 
               {/* GAS adjustments: Size / Material / Color */}
               <div className="bg-white/[0.02] border border-white/5 rounded-xl p-4 space-y-4">
-                <p className="text-xs text-amber-500 font-mono uppercase tracking-wider">基本調整項目</p>
+                <p className="text-xs text-camel-500 font-mono uppercase tracking-wider">基本調整項目</p>
 
                 {(["サイズ", "素材", "カラー"] as const).map((cat) => {
                   const opts = priceData.adjustments[cat];
@@ -444,7 +444,7 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                             onClick={() => setter(opt)}
                             className={`px-3 py-1.5 rounded-lg border text-xs font-semibold transition-all ${
                               selected === opt
-                                ? "bg-amber-500/15 border-amber-500/80 text-amber-400"
+                                ? "bg-camel-500/15 border-camel-500/80 text-camel-400"
                                 : "bg-white/[0.02] border-white/10 text-gray-400 hover:border-white/20"
                             }`}
                           >
@@ -500,17 +500,17 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
 
               {/* Existing: years slider */}
               <div className="bg-white/[0.02] border border-white/5 rounded-xl p-4 space-y-3">
-                <p className="text-xs text-amber-500 font-mono uppercase tracking-wider">愛着育成・エイジング加点</p>
+                <p className="text-xs text-camel-500 font-mono uppercase tracking-wider">愛着育成・エイジング加点</p>
                 <div className="flex items-center justify-between text-xs sm:text-sm">
                   <span className="font-semibold text-gray-300">この革ジャンの所有年数（相棒歴）</span>
-                  <span className="font-mono text-amber-400 font-bold text-base bg-amber-500/10 px-2.5 py-0.5 rounded border border-amber-500/20">
+                  <span className="font-mono text-camel-400 font-bold text-base bg-camel-500/10 px-2.5 py-0.5 rounded border border-camel-500/20">
                     {yearsOwned} 年間
                   </span>
                 </div>
                 <input
                   type="range" min="1" max="25" value={yearsOwned}
                   onChange={(e) => setYearsOwned(parseInt(e.target.value))}
-                  className="w-full accent-amber-500 bg-gray-800 h-2 rounded-lg appearance-none cursor-pointer"
+                  className="w-full accent-camel-400 bg-gray-800 h-2 rounded-lg appearance-none cursor-pointer"
                 />
                 <div className="flex justify-between text-[10px] text-gray-500 font-mono">
                   <span>1年（大切にお試し）</span><span>10年（貫禄）</span><span>20年以上（熟成ゴールド）</span>
@@ -530,17 +530,17 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                       onClick={() => toggleAgingFactor(factor.id)}
                       className={`p-3.5 rounded-xl border text-left flex items-start justify-between gap-3 cursor-pointer select-none transition-all ${
                         isChecked
-                          ? "bg-amber-500/[0.08] border-amber-500/80 text-white"
+                          ? "bg-camel-500/[0.08] border-camel-500/80 text-white"
                           : "bg-white/[0.01] border-white/5 hover:bg-white/[0.03] text-gray-400"
                       }`}
                     >
                       <div className="flex items-start gap-3">
-                        <div className={`mt-0.5 w-5 h-5 rounded border flex items-center justify-center shrink-0 ${isChecked ? "border-amber-500 bg-amber-500 text-black" : "border-gray-600 bg-black/30"}`}>
+                        <div className={`mt-0.5 w-5 h-5 rounded border flex items-center justify-center shrink-0 ${isChecked ? "border-camel-500 bg-camel-500 text-black" : "border-gray-600 bg-black/30"}`}>
                           {isChecked && <Check className="w-3.5 h-3.5 stroke-[3]" />}
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className={`text-xs sm:text-sm font-bold ${isChecked ? "text-amber-400" : "text-gray-300"}`}>{factor.name}</span>
+                            <span className={`text-xs sm:text-sm font-bold ${isChecked ? "text-camel-400" : "text-gray-300"}`}>{factor.name}</span>
                             <span className="inline-flex items-center gap-0.5 text-[9px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.5 rounded font-mono shrink-0">
                               <Plus className="w-2 h-2" />加点査定！
                             </span>
@@ -564,7 +564,7 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                 <button
                   onClick={() => setStep(5)}
                   disabled={!selectedSize || !selectedMaterial || !selectedColor}
-                  className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 disabled:opacity-40 disabled:cursor-not-allowed text-black font-black py-4 px-8 rounded-xl flex items-center gap-2 shadow-lg shadow-amber-500/20 hover:scale-[1.02] active:scale-95 transition-all text-base justify-center"
+                  className="bg-gradient-to-r from-burgundy-600 to-burgundy-500 hover:from-burgundy-500 hover:to-burgundy-400 disabled:opacity-40 disabled:cursor-not-allowed text-white font-black py-4 px-8 rounded-xl flex items-center gap-2 shadow-lg shadow-burgundy-500/20 hover:scale-[1.02] active:scale-95 transition-all text-base justify-center"
                 >
                   <span>AI×レザーソムリエ 加点スピード査定を実行</span>
                   <ChevronRight className="w-5 h-5 stroke-[3]" />
@@ -579,25 +579,25 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
               {isCalculating ? (
                 <div className="py-12 flex flex-col items-center justify-center space-y-4">
                   <div className="relative w-16 h-16">
-                    <div className="absolute inset-0 rounded-full border-4 border-amber-500/10" />
-                    <div className="absolute inset-0 rounded-full border-4 border-t-amber-500 animate-spin" />
+                    <div className="absolute inset-0 rounded-full border-4 border-camel-500/10" />
+                    <div className="absolute inset-0 rounded-full border-4 border-t-camel-500 animate-spin" />
                   </div>
                   <div className="text-center space-y-1">
-                    <p className="font-mono text-xs text-amber-500 tracking-widest animate-pulse">ANALYZING SPECIFICATIONS...</p>
+                    <p className="font-mono text-xs text-camel-500 tracking-widest animate-pulse">ANALYZING SPECIFICATIONS...</p>
                     <h5 className="font-bold text-gray-200">AI＆レザーソムリエが「熟成加点」を計算中</h5>
                     <p className="text-xs text-gray-400 max-w-xs">一律減点のリサイクルショップデータベースと異なり、あなたが育てたエイジングをポジティブ加点に組み替えています...</p>
                   </div>
                 </div>
               ) : currentResult && (
                 <div className="space-y-5">
-                  <div className="bg-gradient-to-br from-[#1c1f2e] to-[#121420] border border-amber-500/30 p-5 sm:p-6 rounded-2xl relative overflow-hidden shadow-inner">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 opacity-[0.03] border-4 border-amber-500 rounded-full pointer-events-none flex items-center justify-center">
+                  <div className="bg-gradient-to-br from-[#1c1f2e] to-[#121420] border border-camel-500/30 p-5 sm:p-6 rounded-2xl relative overflow-hidden shadow-inner">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 opacity-[0.03] border-4 border-camel-500 rounded-full pointer-events-none flex items-center justify-center">
                       <span className="font-mono font-bold text-lg select-none">LIUGOO REUSE APPROVED</span>
                     </div>
 
                     <div className="flex items-center justify-between mb-4">
                       <div>
-                        <span className="text-[10px] font-mono text-amber-500 tracking-wider block">APPROVED ESTIMATE</span>
+                        <span className="text-[10px] font-mono text-camel-500 tracking-wider block">APPROVED ESTIMATE</span>
                         <h4 className="text-sm font-bold text-gray-300">リューグー価値発見：簡易鑑定書</h4>
                       </div>
                       <div className="px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-[10px] font-bold text-emerald-400 animate-bounce">
@@ -616,7 +616,7 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                       </div>
                       <div>
                         <span className="text-gray-500 block">コンディション</span>
-                        <span className="font-semibold text-amber-400 font-mono">
+                        <span className="font-semibold text-camel-400 font-mono">
                           {selectedCondition.split("：")[0]}ランク（×{currentResult.conditionMultiplier.toFixed(1)}）
                         </span>
                       </div>
@@ -626,7 +626,7 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                       </div>
                       <div>
                         <span className="text-gray-500 block">お付き合い歴</span>
-                        <span className="font-semibold text-amber-400 font-mono">{yearsOwned} 年（長期加点適用）</span>
+                        <span className="font-semibold text-camel-400 font-mono">{yearsOwned} 年（長期加点適用）</span>
                       </div>
                       <div>
                         <span className="text-gray-500 block">エイジング加点箇所</span>
@@ -640,11 +640,11 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                       <span className="text-xs text-gray-400 block tracking-wider">★減点されない、加点方式の本革買取予想レンジ</span>
                       <div className="flex items-baseline justify-center gap-2 flex-wrap">
                         <span className="text-gray-400 text-xs sm:text-sm font-semibold">目安査定額</span>
-                        <span className="text-3xl sm:text-5xl font-mono font-black text-amber-400 tracking-tight drop-shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                        <span className="text-3xl sm:text-5xl font-mono font-black text-camel-400 tracking-tight drop-shadow-[0_0_15px_rgba(193,154,107,0.2)]">
                           ¥{animatedMin.toLocaleString()}
                         </span>
                         <span className="text-gray-400 text-sm sm:text-xl font-bold font-mono">〜</span>
-                        <span className="text-3xl sm:text-5xl font-mono font-black text-amber-400 tracking-tight drop-shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                        <span className="text-3xl sm:text-5xl font-mono font-black text-camel-400 tracking-tight drop-shadow-[0_0_15px_rgba(193,154,107,0.2)]">
                           ¥{animatedMax.toLocaleString()}
                         </span>
                         <span className="text-emerald-400 text-sm font-bold block sm:inline ml-1">(税込)</span>
@@ -664,7 +664,7 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                         </span>
                       </div>
                       {currentResult.yearsBonus > 0 && (
-                        <div className="flex justify-between text-amber-400">
+                        <div className="flex justify-between text-camel-400">
                           <span>愛着育成・長寿メンテボーナス:</span>
                           <span className="font-mono font-bold">+¥{currentResult.yearsBonus.toLocaleString()}</span>
                         </div>
@@ -686,8 +686,8 @@ export default function AssessmentCalculator({ onOpenLine }: AssessmentCalculato
                     </div>
                   </div>
 
-                  <div className="bg-amber-500/5 text-gray-300 rounded-xl p-4 border border-amber-500/20 text-xs leading-relaxed space-y-2">
-                    <h5 className="font-bold text-amber-400 flex items-center gap-1">
+                  <div className="bg-camel-500/5 text-gray-300 rounded-xl p-4 border border-camel-500/20 text-xs leading-relaxed space-y-2">
+                    <h5 className="font-bold text-camel-400 flex items-center gap-1">
                       💡 さらに高額に？LINE無料自慢査定で「愛着の歴史」を聞かせてください
                     </h5>
                     <p>

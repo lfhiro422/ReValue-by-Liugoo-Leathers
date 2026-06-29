@@ -16,7 +16,7 @@ export default function LineSimulator() {
     {
       id: "m1",
       sender: "sommelier",
-      text: "こんにちは！レザージャケット査定専門会社『リューグー・リユース』のレザーソムリエAIと人間鑑定士ハイブリッド査定ラインへようこそ！🏍️",
+      text: "こんにちは！レザージャケット査定専門会社『ReValue by Liugoo Leathers』のレザーソムリエAIと人間鑑定士ハイブリッド査定ラインへようこそ！🏍️",
       time: "22:55"
     },
     {
@@ -155,7 +155,7 @@ export default function LineSimulator() {
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="font-bold text-white text-sm">リューグー・リユース (革ジャン専門鑑定)</span>
+              <span className="font-bold text-white text-sm">ReValue by Liugoo Leathers（革ジャン専門鑑定）</span>
               <span className="bg-white/20 text-white text-[9px] px-1 rounded font-bold">公式</span>
             </div>
             <span className="text-[10px] text-white/85 flex items-center gap-1">
@@ -182,7 +182,7 @@ export default function LineSimulator() {
           >
             {/* Avatar for bot */}
             {msg.sender === "sommelier" && (
-              <div className="w-8 h-8 rounded-full bg-gray-900 border border-amber-500/30 flex items-center justify-center text-[10px] font-black text-amber-400 shrink-0 select-none">
+              <div className="w-8 h-8 rounded-full bg-gray-900 border border-camel-500/30 flex items-center justify-center text-[10px] font-black text-camel-400 shrink-0 select-none">
                 SOM
               </div>
             )}
@@ -240,33 +240,33 @@ export default function LineSimulator() {
             {activeActions.includes("owner-story") && (
               <button
                 onClick={() => triggerReply("owner-story")}
-                className="w-full bg-white/[0.04] hover:bg-amber-500/10 hover:border-amber-500/50 hover:text-amber-400 border border-white/5 p-2.5 text-xs text-left text-gray-300 rounded-lg flex items-center justify-between transition-all cursor-pointer group"
+                className="w-full bg-white/[0.04] hover:bg-camel-500/10 hover:border-camel-500/50 hover:text-camel-400 border border-white/5 p-2.5 text-xs text-left text-gray-300 rounded-lg flex items-center justify-between transition-all cursor-pointer group"
               >
-                <span className="font-semibold text-xs py-0.5 px-2 bg-amber-500/10 rounded mr-2 shrink-0 border border-amber-500/20 text-amber-500">愛着ストーリー</span>
+                <span className="font-semibold text-xs py-0.5 px-2 bg-camel-500/10 rounded mr-2 shrink-0 border border-camel-500/20 text-camel-500">愛着ストーリー</span>
                 <span className="truncate flex-1">「20代で購入、SR400でのライディングの思い出…」</span>
-                <span className="text-amber-500 text-[10px] group-hover:translate-x-1 transition-transform">話す →</span>
+                <span className="text-camel-500 text-[10px] group-hover:translate-x-1 transition-transform">話す →</span>
               </button>
             )}
             
             {activeActions.includes("oil-care") && (
               <button
                 onClick={() => triggerReply("oil-care")}
-                className="w-full bg-white/[0.04] hover:bg-amber-500/10 hover:border-amber-500/50 hover:text-amber-400 border border-white/5 p-2.5 text-xs text-left text-gray-300 rounded-lg flex items-center justify-between transition-all cursor-pointer group"
+                className="w-full bg-white/[0.04] hover:bg-camel-500/10 hover:border-camel-500/50 hover:text-camel-400 border border-white/5 p-2.5 text-xs text-left text-gray-300 rounded-lg flex items-center justify-between transition-all cursor-pointer group"
               >
-                <span className="font-semibold text-xs py-0.5 px-2 bg-amber-500/10 rounded mr-2 shrink-0 border border-amber-500/20 text-amber-500">丁寧な手入れ</span>
+                <span className="font-semibold text-xs py-0.5 px-2 bg-camel-500/10 rounded mr-2 shrink-0 border border-camel-500/20 text-camel-500">丁寧な手入れ</span>
                 <span className="truncate flex-1">「毎年マスタングペーストやミンクオイルで大切に…」</span>
-                <span className="text-amber-500 text-[10px] group-hover:translate-x-1 transition-transform">話す →</span>
+                <span className="text-camel-500 text-[10px] group-hover:translate-x-1 transition-transform">話す →</span>
               </button>
             )}
 
             {activeActions.includes("photo-upload") && (
               <button
                 onClick={() => triggerReply("photo-upload")}
-                className="w-full bg-white/[0.04] hover:bg-amber-500/10 hover:border-amber-500/50 hover:text-amber-400 border border-white/5 p-2.5 text-xs text-left text-gray-300 rounded-lg flex items-center justify-between transition-all cursor-pointer group"
+                className="w-full bg-white/[0.04] hover:bg-camel-500/10 hover:border-camel-500/50 hover:text-camel-400 border border-white/5 p-2.5 text-xs text-left text-gray-300 rounded-lg flex items-center justify-between transition-all cursor-pointer group"
               >
-                <span className="font-semibold text-xs py-0.5 px-2 bg-amber-500/10 rounded mr-2 shrink-0 border border-amber-500/20 text-amber-500">シワ・茶芯</span>
+                <span className="font-semibold text-xs py-0.5 px-2 bg-camel-500/10 rounded mr-2 shrink-0 border border-camel-500/20 text-camel-500">シワ・茶芯</span>
                 <span className="truncate flex-1">「【写真送付】袖のアタリやヴィンテージ風の茶芯の…」</span>
-                <span className="text-amber-500 text-[10px] group-hover:translate-x-1 transition-transform">画像を送る →</span>
+                <span className="text-camel-500 text-[10px] group-hover:translate-x-1 transition-transform">画像を送る →</span>
               </button>
             )}
           </div>

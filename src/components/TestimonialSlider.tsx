@@ -17,7 +17,7 @@ export default function TestimonialSlider() {
             onClick={() => setActiveIndex(idx)}
             className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 cursor-pointer transition-all ${
               activeIndex === idx
-                ? "bg-amber-500 text-black shadow-lg shadow-amber-500/10 scale-105"
+                ? "bg-camel-500 text-black shadow-lg shadow-camel-500/10 scale-105"
                 : "bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 text-gray-400 hover:text-gray-200"
             }`}
           >
@@ -37,7 +37,7 @@ export default function TestimonialSlider() {
         >
           {/* Left: Persona profile detail */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="relative group mx-auto lg:mx-0 w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-2 border-amber-500/50 block">
+            <div className="relative group mx-auto lg:mx-0 w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-2 border-camel-500/50 block">
               <img
                 src={current.avatarUrl}
                 alt={current.name}
@@ -45,7 +45,7 @@ export default function TestimonialSlider() {
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex items-end justify-center p-2">
-                <span className="text-[10px] font-bold text-amber-400 bg-amber-500/10 border border-amber-500/20 py-0.5 px-2 rounded-full">
+                <span className="text-[10px] font-bold text-camel-400 bg-camel-500/10 border border-camel-500/20 py-0.5 px-2 rounded-full">
                   {current.bikerType.split("/")[0]}
                 </span>
               </div>
@@ -56,13 +56,13 @@ export default function TestimonialSlider() {
                 <h4 className="text-xl font-bold text-white mb-0.5">{current.name}</h4>
                 <span className="text-gray-400 text-sm">（{current.age}歳・会社員）</span>
               </div>
-              <p className="text-xs text-amber-500 font-mono tracking-tight font-medium">
+              <p className="text-xs text-camel-500 font-mono tracking-tight font-medium">
                 {current.subTitle}
               </p>
               
-              <div className="flex items-center justify-center lg:justify-start gap-1 text-amber-400 mt-2">
+              <div className="flex items-center justify-center lg:justify-start gap-1 text-camel-400 mt-2">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-500 text-amber-500" />
+                  <Star key={i} className="w-4 h-4 fill-camel-500 text-camel-500" />
                 ))}
                 <span className="text-xs text-white ml-2 font-bold font-mono">5.0 / 満足度極上</span>
               </div>
@@ -82,17 +82,17 @@ export default function TestimonialSlider() {
               </div>
 
               {/* Liugoo Approved Additions price */}
-              <div className="flex flex-col p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 space-y-1">
-                <div className="flex items-center justify-between text-xs text-amber-400 font-bold">
+              <div className="flex flex-col p-3 rounded-lg bg-camel-500/10 border border-camel-500/30 space-y-1">
+                <div className="flex items-center justify-between text-xs text-camel-400 font-bold">
                   <span className="flex items-center gap-1">
-                    <BadgeCheck className="w-3.5 h-3.5 text-amber-500 shrink-0 animate-pulse" />
+                    <BadgeCheck className="w-3.5 h-3.5 text-camel-500 shrink-0 animate-pulse" />
                     リューグー「価値発見（加点）」
                   </span>
                   <span className="text-[10px] bg-red-500 text-white font-bold px-1.5 py-0.2 rounded">約{Math.round((current.finalPrice / current.estimatedPrice) * 10) / 10}倍！</span>
                 </div>
                 <div className="flex justify-between items-baseline pt-1">
                   <span className="text-[10px] text-gray-400 font-serif">最終お振込</span>
-                  <span className="text-2xl font-mono text-amber-400 font-black tracking-tight">
+                  <span className="text-2xl font-mono text-camel-400 font-black tracking-tight">
                     ¥{current.finalPrice.toLocaleString()}
                   </span>
                 </div>
@@ -104,15 +104,15 @@ export default function TestimonialSlider() {
           {/* Right: Personal deep narrative */}
           <div className="lg:col-span-8 space-y-5">
             <div className="space-y-2">
-              <span className="text-xs uppercase tracking-wider text-amber-500 font-mono block">RIDER EXPERIENCE / SUCCESS STORY</span>
+              <span className="text-xs uppercase tracking-wider text-camel-500 font-mono block">RIDER EXPERIENCE / SUCCESS STORY</span>
               <h5 className="text-xl sm:text-2xl font-black text-gray-100 leading-tight">
                 「{current.storyTitle}」
               </h5>
             </div>
 
             {/* Gorgeous large quote bubble */}
-            <div className="relative border-l-4 border-amber-500 pl-4 py-1 italic text-amber-100/90 font-bold bg-white/[0.01] p-3 rounded-r-xl">
-              <span className="absolute -top-4 -left-1 text-5xl font-serif text-amber-500/20 pointer-events-none select-none">“</span>
+            <div className="relative border-l-4 border-camel-500 pl-4 py-1 italic text-camel-200/90 font-bold bg-white/[0.01] p-3 rounded-r-xl">
+              <span className="absolute -top-4 -left-1 text-5xl font-serif text-camel-500/20 pointer-events-none select-none">"</span>
               <p className="text-sm sm:text-base leading-relaxed">{current.quote}</p>
             </div>
 

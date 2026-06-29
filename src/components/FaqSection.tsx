@@ -20,7 +20,7 @@ export default function FaqSection() {
             key={idx}
             className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
               isOpen
-                ? "bg-[#141622] border-amber-500/30 shadow-lg shadow-amber-500/5"
+                ? "bg-[#141622] border-camel-500/30 shadow-lg shadow-camel-500/5"
                 : "bg-[#0f1015] border-white/5 hover:border-white/10"
             }`}
           >
@@ -30,13 +30,13 @@ export default function FaqSection() {
               className="w-full px-6 py-5 text-left flex items-start justify-between gap-4 transition-colors cursor-pointer select-none"
             >
               <div className="flex gap-3 items-start">
-                <HelpCircle className={`w-5 h-5 mt-0.5 shrink-0 ${isOpen ? "text-amber-500" : "text-gray-500"}`} />
+                <HelpCircle className={`w-5 h-5 mt-0.5 shrink-0 ${isOpen ? "text-camel-500" : "text-gray-500"}`} />
                 <span className={`font-bold text-sm sm:text-base leading-snug ${isOpen ? "text-white" : "text-gray-300"}`}>
                   {faq.question}
                 </span>
               </div>
               
-              <div className={`mt-1 p-1 rounded-full bg-white/5 border border-white/5 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 bg-amber-500/10 border-amber-500/20 text-amber-500" : "text-gray-400"}`}>
+              <div className={`mt-1 p-1 rounded-full bg-white/5 border border-white/5 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180 bg-camel-500/10 border-camel-500/20 text-camel-500" : "text-gray-400"}`}>
                 <ChevronDown className="w-4 h-4" />
               </div>
             </button>
