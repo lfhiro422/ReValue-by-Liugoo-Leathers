@@ -150,7 +150,7 @@ export default function App() {
               </p>
 
               <h1 className="text-3xl sm:text-5xl lg:text-5xl font-black text-white tracking-tight leading-tight sm:leading-none">
-                <span className="block text-gray-400 text-lg sm:text-2xl font-normal tracking-normal mb-1">
+                <span className="block text-gray-500 text-base sm:text-xl font-light tracking-normal mb-1.5">
                   総合古着屋の「一律減点」に、がっかりしていませんか？
                 </span>
                 その擦れも、シワも、<br className="hidden sm:inline" />
