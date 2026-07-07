@@ -23,7 +23,7 @@ export function usePriceData(): UsePriceDataResult {
         : (import.meta.env.VITE_GAS_ENDPOINT as string | undefined);
       if (!endpoint) throw new Error("GASエンドポイントが設定されていません（VITE_GAS_ENDPOINT）");
 
-      const res = await fetch(endpoint);
+      const res = await fetch(`${endpoint}?t=${Date.now()}`, { cache: 'no-store' });
       if (!res.ok) throw new Error(`通信エラー: ${res.status}`);
 
       const json = await res.json();

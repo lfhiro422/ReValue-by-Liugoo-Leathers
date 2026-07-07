@@ -102,7 +102,7 @@ export default function OfficialAppraisal() {
 
   // fetch price data from GAS on mount
   useEffect(() => {
-    fetch(GAS_ENDPOINT)
+    fetch(`${GAS_ENDPOINT}?t=${Date.now()}`, { cache: 'no-store' })
       .then((r) => r.json())
       .then((json) => {
         if (json.success) setGasData(json.data);
@@ -120,12 +120,12 @@ export default function OfficialAppraisal() {
 
   const calcAmount = (): number => {
     if (!gasData || !selectedCondition) return 0;
-    const rate      = gasData.conditions[selectedCondition] ?? 1;
-    const sizeAdj   = gasData.adjustments["サイズ"]?.[selectedSize]      ?? 0;
+    const rate      = gasData.conditions[selectedCondition.charAt(0)] ?? 1;
+    const sizeAdj   = gasData.adjustments["サイズ"]?.[`${selectedSize}サイズ`] ?? 0;
     const matAdj    = gasData.adjustments["素材"]?.[selectedMaterial]     ?? 0;
     const colorAdj  = gasData.adjustments["カラー"]?.[selectedColor]      ?? 0;
-    const moldAdj   = hasMold  ? (gasData.adjustments["カビ"]?.["あり"]   ?? -10000) : 0;
-    const smellAdj  = hasSmell ? (gasData.adjustments["臭い"]?.["あり"]   ?? -10000) : 0;
+    const moldAdj   = hasMold  ? (gasData.adjustments["カビ"]?.["カビあり"]  ?? -10000) : 0;
+    const smellAdj  = hasSmell ? (gasData.adjustments["臭い"]?.["臭いあり"]  ?? -10000) : 0;
     return Math.max(0, Math.round(basePrice * rate) + sizeAdj + matAdj + colorAdj + moldAdj + smellAdj);
   };
 
@@ -367,7 +367,7 @@ export default function OfficialAppraisal() {
 
                 <div className="space-y-2 flex-1">
                   {CONDITION_OPTIONS.map((opt) => {
-                    const rate = gasData.conditions[opt.key] ?? 0;
+                    const rate = gasData.conditions[opt.grade] ?? 0;
                     return (
                       <button
                         key={opt.key}
@@ -418,7 +418,7 @@ export default function OfficialAppraisal() {
                   <p className="text-xs text-gray-400 font-semibold tracking-wide">サイズ</p>
                   <div className="grid grid-cols-4 gap-2">
                     {SIZE_OPTIONS.map((s) => {
-                      const adj = gasData.adjustments["サイズ"]?.[s] ?? 0;
+                      const adj = gasData.adjustments["サイズ"]?.[`${s}サイズ`] ?? 0;
                       return (
                         <button key={s} onClick={() => setSelectedSize(s)}
                           className={`py-3 rounded-xl border text-center transition-all cursor-pointer ${
@@ -574,10 +574,10 @@ export default function OfficialAppraisal() {
                     </div>
                     <div className="flex justify-between">
                       <span>状態倍率 ({selectedCondition.charAt(0)}):</span>
-                      <span className="font-mono">× {(gasData.conditions[selectedCondition] ?? 1).toFixed(1)}</span>
+                      <span className="font-mono">× {(gasData.conditions[selectedCondition.charAt(0)] ?? 1).toFixed(1)}</span>
                     </div>
                     {(() => {
-                      const sizeAdj  = gasData.adjustments["サイズ"]?.[selectedSize]     ?? 0;
+                      const sizeAdj  = gasData.adjustments["サイズ"]?.[`${selectedSize}サイズ`] ?? 0;
                       const matAdj   = gasData.adjustments["素材"]?.[selectedMaterial]    ?? 0;
                       const colorAdj = gasData.adjustments["カラー"]?.[selectedColor]     ?? 0;
                       return (

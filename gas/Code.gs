@@ -85,40 +85,25 @@ function getPriceData() {
     }
   }
 
-  // ---------- 掛け率 ----------
-  const rateSheet = ss.getSheetByName('掛け率');
-  if (!rateSheet) throw new Error('「掛け率」シートが見つかりません');
+  // ---------- 掛け率/減額 ----------
+  const rateSheet = ss.getSheetByName('掛け率/減額');
+  if (!rateSheet) throw new Error('「掛け率/減額」シートが見つかりません');
 
   const rateValues = rateSheet.getDataRange().getValues();
-  const conditions = {};   // 状態倍率  例: { "S（新品同様）": 1.0, "A（傷・汚れなし）": 0.8, ... }
-  const adjustments = {};  // 調整金額  例: { "サイズ": { "S": -10000, "M": -5000, ... }, ... }
-
-  // C列のカテゴリ名は先頭行にしか入力されていないためキャリーフォワードする
-  let currentAdjCat = '';
+  const conditions = {};
+  const adjustments = {};
 
   for (let i = 1; i < rateValues.length; i++) {
-    const row = rateValues[i];
+    const [type, option, value] = rateValues[i];
+    if (!type || !option) continue;
 
-    // A列: 状態ラベル, B列: 倍率
-    if (row[0] != null && row[0] !== '') {
-      const label = String(row[0]).trim();
-      const mult  = Number(row[1]);
-      if (label && !isNaN(mult)) {
-        conditions[label] = mult;
-      }
-    }
-
-    // C列: カテゴリ（空欄の場合は直前の値を引き継ぐ）, D列: オプション名, E列: 加減額
-    if (row[2] != null && row[2] !== '') {
-      currentAdjCat = String(row[2]).trim();
-    }
-    if (currentAdjCat && row[3] != null && row[3] !== '') {
-      const opt = String(row[3]).trim();
-      const amt = Number(row[4]);
-      if (opt) {
-        if (!adjustments[currentAdjCat]) adjustments[currentAdjCat] = {};
-        adjustments[currentAdjCat][opt] = isNaN(amt) ? 0 : amt;
-      }
+    if (String(type).trim() === '状態') {
+      const grade = String(option).trim().charAt(0);
+      conditions[grade] = Number(value);
+    } else {
+      const category = String(type).trim();
+      if (!adjustments[category]) adjustments[category] = {};
+      adjustments[category][String(option).trim()] = Number(value) || 0;
     }
   }
 
