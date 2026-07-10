@@ -279,7 +279,7 @@ export default function App() {
       </section>
 
       {/* Sympathy & Pain points section (共感・お悩み代弁) */}
-      <section id="pains-anchor" className="py-20 max-w-7xl mx-auto px-4 sm:px-6">
+      <section id="pains-anchor" className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center space-y-4 mb-12">
           <span className="text-xs uppercase tracking-widest text-camel-500 font-mono font-bold block">TARGET AUDIENCE INTENT</span>
           <h2 className="text-2xl sm:text-3xl font-black text-white">
@@ -287,8 +287,9 @@ export default function App() {
             何年も眠っている革ジャンはありませんか？
           </h2>
           <p className="text-xs sm:text-sm text-gray-400 max-w-2xl mx-auto">
-            クローゼット、そして家族のプレッシャーに葛藤する本物のレザー愛好家の皆様へ。一度チェックをつけて、あなたの状態と照らし合わせてみてください。
-          </p>
+  <span className="sm:hidden">当てはまるものにチェックしてみてください。</span>
+  <span className="hidden sm:inline">クローゼット、そして家族のプレッシャーに葛藤する本物のレザー愛好家の皆様へ。一度チェックをつけて、あなたの状態と照らし合わせてみてください。</span>
+</p>
         </div>
 
         {/* Dynamic interactive pain checkbox box */}
@@ -359,7 +360,7 @@ export default function App() {
       </section>
 
       {/* Solution Presentation 3-Step Section (画期的手軽さ) */}
-      <section className="bg-[#0f111a] py-20 border-y border-white/[0.02]">
+     <section className="bg-[#0f111a] py-12 sm:py-20 border-y border-white/[0.02]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
           <div className="text-center space-y-4 mb-16">
@@ -368,8 +369,9 @@ export default function App() {
               自宅にいながら「わずか1分」で完了。<br />あなたの革ジャンの価値をプロが正当に評価します！
             </h2>
             <p className="text-xs sm:text-sm text-gray-400 max-w-2xl mx-auto">
-              一切の面倒を排除。部屋から一歩も出ずに、あなたの大切な一着を最も気持ちよく、納得のいくスピードでバトンタッチできる仕組みです。
-            </p>
+  <span className="sm:hidden">自宅から一歩も出ずに完結します。</span>
+  <span className="hidden sm:inline">一切の面倒を排除。部屋から一歩も出ずに、あなたの大切な一着を最も気持ちよく、納得のいくスピードでバトンタッチできる仕組みです。</span>
+</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -429,16 +431,17 @@ export default function App() {
       </section>
 
       {/* Benefits / USP Reasons (選ばれる3つの理由) */}
-      <section id="features-anchor" className="py-20 max-w-7xl mx-auto px-4 sm:px-6">
+      <section id="features-anchor" className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6">
 
         <div className="text-center space-y-4 mb-16">
           <span className="text-xs uppercase tracking-widest text-camel-500 font-mono font-bold block">OUR UNIQUE BENEFITS</span>
           <h2 className="text-2xl sm:text-3xl font-black text-white">
             なぜリューグーが、多くの革ジャン愛好家・バイカーたちに選ばれるのか？<br />3つの強力な理由
           </h2>
-          <p className="text-xs sm:text-sm text-gray-400 max-w-2xl mx-auto">
-            他ブランドの単なる「古いもの処分」とは一線を画す。革ジャン愛を正当に継承するためのプロフェッショナルな強みをご案内します。
-          </p>
+         <p className="text-xs sm:text-sm text-gray-400 max-w-2xl mx-auto">
+  <span className="sm:hidden">選ばれる理由は、この3つです。</span>
+  <span className="hidden sm:inline">他ブランドの単なる「古いもの処分」とは一線を画す。革ジャン愛を正当に継承するためのプロフェッショナルな強みをご案内します。</span>
+</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
@@ -521,13 +524,16 @@ export default function App() {
 
           <OfficialAppraisal />
 
-          <AssessmentCalculator onOpenLine={() => scrollToSection("line-anchor")} />
 
+{/* Legacy quick estimator — hidden but keeps the LINE CTA intact */}
+<div className="hidden">
+  <AssessmentCalculator onOpenLine={() => scrollToSection("line-anchor")} />
+</div>
         </div>
       </section>
 
       {/* LINE Appraiser Interactive Simulator Area */}
-      <section id="line-anchor" className="py-20 max-w-5xl mx-auto px-4 sm:px-6 space-y-8">
+      <section id="line-anchor" className="py-12 sm:py-20 max-w-5xl mx-auto px-4 sm:px-6 space-y-8">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
@@ -568,7 +574,7 @@ export default function App() {
       </section>
 
       {/* Customer Success Stories Testimonial Section (お客様の声) */}
-      <section id="testimonials-anchor" className="py-20 bg-[#0c0d15] border-y border-white/[0.02]">
+      <section id="testimonials-anchor" className="py-12 sm:py-20 bg-[#0c0d15] border-y border-white/[0.02]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
 
           <div className="text-center space-y-4">
@@ -588,7 +594,7 @@ export default function App() {
       </section>
 
       {/* FAQ Section (よくある質問) */}
-      <section id="faqs-anchor" className="py-20 max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+      <section id="faqs-anchor" className="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
 
         <div className="text-center space-y-4">
           <span className="text-xs uppercase tracking-widest text-camel-500 font-mono font-bold block">FREQUENTLY ASKED QUESTIONS</span>
@@ -603,7 +609,7 @@ export default function App() {
       </section>
 
       {/* Final Back Push Call To Action Banner */}
-      <section className="py-20 bg-gradient-to-br from-[#10121d] via-[#161a29] to-[#001a33] border-t border-camel-500/10 relative overflow-hidden">
+      <section className="py-12 sm:py-20 bg-gradient-to-br from-[#10121d] via-[#161a29] to-[#001a33] border-t border-camel-500/10 relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-camel-500/30 to-transparent"></div>
         <div className="absolute right-0 bottom-0 w-96 h-96 bg-camel-500/5 blur-3xl rounded-full scale-50"></div>
 
